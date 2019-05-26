@@ -24,6 +24,13 @@ class Message extends Entity
     protected $type;
 
     /**
+     * Message text
+     *
+     * @var string
+     */
+    protected $text;
+
+    /**
      * Sender information
      *
      * @var \Viber\Api\Sender
@@ -57,6 +64,7 @@ class Message extends Entity
     public function toArray()
     {
         return [
+            'text' => $this->getText(),
             'receiver' => $this->getReceiver(),
             'type' => $this->getType(),
             'sender' => $this->getSender(),
@@ -64,6 +72,22 @@ class Message extends Entity
             'min_api_version' => $this->getMinApiVersion(),
             'keyboard' => $this->getKeyboard(),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
     }
 
     /**

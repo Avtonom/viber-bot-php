@@ -29,7 +29,8 @@ class Contact extends Message
      * {@inheritdoc}
      */
     protected $propertiesMap = [
-        'contact' => 'setConcat'
+        'contact' => 'setConcat',
+        'text' => 'setText',
     ];
 
     /**
@@ -110,8 +111,10 @@ class Contact extends Message
      */
     public function setConcat($contact)
     {
-        $this->phone_number = $contact['phone_number'];
-
+        $this->setPhoneNumber($contact['phone_number']);
+        if(!empty(($contact['name']))){
+            $this->setName($contact['name']);
+        }
         return $this;
     }
 }
